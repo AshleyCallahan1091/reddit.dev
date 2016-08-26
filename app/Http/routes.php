@@ -14,15 +14,17 @@ use App\Post;
 */
 
 Route::resource('posts', 'PostsController');
+Route::resource('vote-sort', 'PostsController');
 
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('users/{user}', 'UsersController@show');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::get('users/{user}/edit', 'UsersController@edit');
+
+Route::resource('users', 'UsersController');
+
 
 Route::post('vote-post/{post}', 'PostsController@addVote');
 

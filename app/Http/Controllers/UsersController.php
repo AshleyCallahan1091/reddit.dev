@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Post;
 
 
 class UsersController extends Controller
@@ -54,6 +55,7 @@ class UsersController extends Controller
         $logged_in_user = Auth::user();
         $user = User::find($id);
         $posts = $user->posts;
+
         return view('users.account')->with(['logged_in_user' => $logged_in_user, 'user' => $user, 'posts' => $posts]);
     }
 
@@ -65,7 +67,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $logged_in_user = Auth::user();
+        $user = User::find($id);
+
+        return view('users.edit')->with(['user' => $user]);
     }
 
     /**
@@ -77,7 +82,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        return redirect()->action('UsersController@show', $id);
     }
 
     /**

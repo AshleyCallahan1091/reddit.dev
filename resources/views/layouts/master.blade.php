@@ -28,7 +28,6 @@
 						
 						@if(Auth::check())
 							<li><a href="/posts/create">Create</a></li>
-							<li><a href="{{ action('UsersController@show') }}">Profile</a></li>
 						@endif
 					</ul>
 					<form method="GET" action="{{ action('PostsController@index') }}" class="navbar-form navbar-left">
@@ -40,7 +39,7 @@
 
 					@if(Auth::check())
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">Welcome {{ Auth::user()->name }}!</a></li>
+							<li><a href="{{ action('UsersController@show', ['id' => Auth::user()->id]) }}"> Welcome {{ Auth::user()->name }}!</a></li>
 							<li><a href="/auth/logout">Logout</a></li>
 						</ul>
 					@endif

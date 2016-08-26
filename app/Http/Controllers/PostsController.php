@@ -34,8 +34,11 @@ class PostsController extends Controller
 
 			$posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(10);
 			$data = array('posts' => $posts);
-			
 		}
+
+
+
+
 		return view('posts.index')->with('posts', $posts);
 		
 	}
@@ -47,6 +50,7 @@ class PostsController extends Controller
 	 */
 	public function create()
 	{
+
 		return view('posts.create');
 	}
 
@@ -61,7 +65,7 @@ class PostsController extends Controller
 
 	
 		$post = new Post();
-		$post->created_by = 1;
+		$post->created_by = Auth::user()->id;
 
 		return $this->validateAndSave($post, $request);
 	
@@ -75,8 +79,9 @@ class PostsController extends Controller
 	 */
 	public function show($id)
 	{
-		 $post = Post::find($id);
-		 $data = array('post' => $post);
+		$post = Post::find($id);
+		$data = array('post' => $post);
+		$vote->vote_score = $post->voteScore();
 		return view('posts.show', $data);
 	}
 
@@ -145,7 +150,7 @@ class PostsController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        $vote->vote = $vote_value;
+        $vote->vote = $post_vote;
         $vote->save();
 
         $post = $vote->post;

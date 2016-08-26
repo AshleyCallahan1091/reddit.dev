@@ -18,38 +18,24 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th><a href="#">Vote</a></th>
+					<th>Vote</th>
 					<th>Title</th>
 					<th>URL</th>
 					<th>Content</th>
-					<th><a href="#">Time</a></th>
+					<a href="{{action('PostsController@index')}}"><th>Time</th></a>
 					<th>Author</th>
 				</tr>
 			</thead>
 			@foreach ($posts as $post)
 
 				<tr>
-					<td>
-						<div class="text-center">
-							<a method="POST" action="{{ action('PostsController@addVote', ['vote_value' => 1, 'post_id' => $post->id]) }}">
-							<span class="glyphicon glyphicon-arrow-up"></span></a>
-						</div>
-						<div class="text-center">
-							{{ $post->vote_score }} 
-						</div>
-						<div class="text-center">
-							<a method="POST" action="{{ action('PostsController@addVote', ['vote_value' => 0, 'post_id' => $post->id]) }}">
-							<span class="glyphicon glyphicon-arrow-down"></span>
-							</a>
-						</div>
-					</td>
+					<td><span class="glyphicon glyphicon-arrow-up"></p></span><p>
+						
 
-					<td>
-						<a method="POST" action="{{action('PostsController@show', 'post_id', $post->id) }}">{{ $post->title }}</a>
-					</td>
-					<td>
-						<a href="{{ $post->url }}">{{ $post->url }}</a>
-					</td>
+					</p>
+					<p><span class="glyphicon glyphicon-arrow-down"></span></p></td>
+					<td>{{ $post->title }}</td>
+					<td>{{ $post->url }}</td>
 					<td>{{ $post->content }}</td>
 					<td> {{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}</td>
 					<td>{{ $post->user->name}}</td>
