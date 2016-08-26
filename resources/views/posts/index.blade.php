@@ -45,10 +45,10 @@
 					</td>
 
 					<td>
-						<a method="POST" action="{{action('PostsController@show', 'post_id', $post->id) }}">{{ $post->title }}</a>
+						<a method="GET" href="{{ action('PostsController@show', ['post_id' => $post->id]) }}">{{ $post->title }}</a>
 					</td>
 					<td>
-						<a href="{{ $post->url }}">{{ $post->url }}</a>
+						<a method="GET" href="{{ $post->url }}">{{ $post->url }}</a>
 					</td>
 					<td>{{ $post->content }}</td>
 					<td> {{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}</td>

@@ -81,7 +81,7 @@ class PostsController extends Controller
 	{
 		$post = Post::find($id);
 		$data = array('post' => $post);
-		$vote->vote_score = $post->voteScore();
+		$post->vote_score = $post->voteScore();
 		return view('posts.show', $data);
 	}
 

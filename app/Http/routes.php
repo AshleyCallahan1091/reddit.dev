@@ -25,6 +25,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::resource('users', 'UsersController');
 
+Route::get('posts/{post}', 'PostsController@show');
 
 Route::post('vote-post/{post}', 'PostsController@addVote');
 

@@ -2,25 +2,18 @@
 @section('content')
    
    <div class="col-sm-12 text-center">
-		<div class="row">
-
-		
+		<div class="text-center">
 			<a method="POST" action="{{ action('PostsController@addVote', ['vote_value' => 1, 'post_id' => $post->id]) }}">
 			<span class="glyphicon glyphicon-arrow-up"></span></a>
-		
 		</div>
-		<div class="row">
-			<p>{{ $post->vote_score }}</p>
+		<div class="text-center">
+			{{ $post->vote_score }} 
 		</div>
-		<div class="row">
-			
+		<div class="text-center">
 			<a method="POST" action="{{ action('PostsController@addVote', ['vote_value' => 0, 'post_id' => $post->id]) }}">
 			<span class="glyphicon glyphicon-arrow-down"></span>
 			</a>
-		
 		</div>
-	</div>
-
 
 	<dl>
 		<dt>Title</dt>
